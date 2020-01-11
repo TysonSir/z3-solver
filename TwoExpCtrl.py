@@ -15,6 +15,13 @@ s.add(%s, %s)
 
 print(s.check(), end='')
 
+m = s.model()
+with open('log_data.txt', 'a+', encoding='utf-8') as f:
+    log_data = ''
+    for d in m.decls():
+        log_data += "%%s = %%s, " %% (d.name(), m[d])
+    log_data += '\\n'
+    f.write(log_data)
 """
 
 def Not_format(expr):
