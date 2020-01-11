@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><Statechart>
+<State id="C001" name="Error1">
+<Transitions condition="!Activate" priority="0" targetStateId="0000">
+</Transitions>
+<Transitions condition="!S_ChannelA&amp;!S_ChannelB" priority="1" targetStateId="8001">
+</Transitions>
+</State>
+<State id="0000" name="Idle">
+<Transitions condition="Activate" priority="1" targetStateId="8001">
+</Transitions>
+</State>
+<State id="C002" name="Error2">
+<Transitions condition="!Activate" priority="0" targetStateId="0000">
+</Transitions>
+<Transitions condition="!S_ChannelA&amp;!S_ChannelB" priority="1" targetStateId="8001">
+</Transitions>
+</State>
+<State id="8004" name="Wait for ChannelB">
+<Transitions condition="!Activate" priority="0" targetStateId="0000">
+</Transitions>
+<Transitions condition="Timer&gt;=DiscrepancyTime" priority="1" targetStateId="C001">
+</Transitions>
+<Transitions condition="!S_ChannelA" priority="2" targetStateId="8001">
+</Transitions>
+<Transitions condition="S_ChannelB" priority="3" targetStateId="8000">
+</Transitions>
+</State>
+<State id="8001" name="Init">
+<Transitions condition="!Activate" priority="0" targetStateId="0000">
+</Transitions>
+<Transitions condition="S_ChannelA&amp;!S_ChannelB" priority="1" targetStateId="8004">
+</Transitions>
+<Transitions condition="!S_ChannelA&amp;S_ChannelB" priority="2" targetStateId="8014">
+</Transitions>
+<Transitions condition="S_ChannelA&amp;S_ChannelB" priority="3" targetStateId="8000">
+</Transitions>
+</State>
+<State id="8014" name="Wait for ChannelA">
+<Transitions condition="!Activate" priority="0" targetStateId="0000">
+</Transitions>
+<Transitions condition="Timer&gt;=DiscrepancyTime" priority="1" targetStateId="C002">
+</Transitions>
+<Transitions condition="!S_ChannelB" priority="2" targetStateId="8001">
+</Transitions>
+<Transitions condition="S_ChannelA" priority="3" targetStateId="8000">
+</Transitions>
+</State>
+<State id="8005" name="From Active Wait">
+<Transitions condition="!Activate" priority="0" targetStateId="0000">
+</Transitions>
+<Transitions condition="Timer&gt;=DiscrepancyTime" priority="1" targetStateId="C003">
+</Transitions>
+<Transitions condition="!S_ChannelA&amp;!S_ChannelB" priority="2" targetStateId="8001">
+</Transitions>
+</State>
+<State id="C003" name="Error3">
+<Transitions condition="!Activate" priority="0" targetStateId="0000">
+</Transitions>
+<Transitions condition="!S_ChannelA&amp;!S_ChannelB" priority="1" targetStateId="8001">
+</Transitions>
+</State>
+<State id="8000" name="Safety Output Enabled">
+<Transitions condition="!Activate" priority="0" targetStateId="0000">
+</Transitions>
+<Transitions condition="!S_ChannelAXOR!S_ChannelB" priority="1" targetStateId="8005">
+</Transitions>
+<Transitions condition="!S_ChannelA&amp;!S_ChannelB" priority="2" targetStateId="8001">
+</Transitions>
+</State>
+</Statechart>
