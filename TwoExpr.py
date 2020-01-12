@@ -9,7 +9,7 @@ S_ChannelB = Bool('S_ChannelB')
 Timer = Int('Timer')
 DiscrepancyTime = Int('DiscrepancyTime')
 
-s.add(And(Not(S_ChannelA),Not(S_ChannelB)), Or(Not(S_ChannelA),Not(S_ChannelB)))
+s.add(Or(Not(S_ChannelA),Not(S_ChannelB)), And(Not(S_ChannelA),Not(S_ChannelB)))
 
 print(s.check(), end='')
 

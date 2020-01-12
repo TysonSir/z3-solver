@@ -39,7 +39,7 @@ def check_state(state):
         list_trans = list(trans_pair)
         is_sat = tec.get_two_exp_z3_ret(list_trans[0][1], list_trans[1][1])
         if list_trans[0][0] == list_trans[1][0] and is_sat:
-            print(str(list_trans))
+            print('条件冲突-->', str(list_trans))
             return False
     return True
 
@@ -49,7 +49,7 @@ def check_state_chart(xml_path):
 
     for state in root:
         if not check_state(state):
-            print("状态冲突-->",state.tag,":", state.attrib)
+            print("所属状态-->",state.tag,":", state.attrib)
             return False
     return True
 
@@ -62,4 +62,8 @@ if __name__ == '__main__':
     if(check_state_chart(xml_path)):
         print("OK:所有状态不冲突")
     else:
+        print("反例：", end='')
+        with open('log_data.txt', 'r+', encoding='utf-8') as f:
+            list_log = f.readlines()
+            print(list_log[-1])
         print("ERROR:有状态冲突")
