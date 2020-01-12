@@ -39,6 +39,7 @@ def check_state(state):
         list_trans = list(trans_pair)
         is_sat = tec.get_two_exp_z3_ret(list_trans[0][1], list_trans[1][1])
         if list_trans[0][0] == list_trans[1][0] and is_sat:
+            print(str(list_trans))
             return False
     return True
 
